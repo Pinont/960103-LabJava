@@ -41,23 +41,26 @@ public class Lab03 {
         public void statement(Scanner input) {
             double totalCourseScore = 0;
             double totalCredits = 0;
-            while (true) {
+            boolean active = true;
+            while (active) {
                 System.out.print("Please enter a grade point (0,1,2,3,4, or 'Z' to stop a program): ");
                 String Grade = input.next();
                 if (Grade.toUpperCase().charAt(0) == 'Z') {
-                    break;
+                    active = false;
+                    continue;
                 }
                 double gradePoint = Double.parseDouble(Grade);
                 if (gradePoint > 4) {
                     System.out.println("The grade point cannot be greater than 4");
-                    break;
+                    active = false;
+                    continue;
                 }
                 System.out.print("Please enter a subject credit: ");
                 double credit = input.nextDouble();
                 totalCredits += credit;
                 totalCourseScore += gradePoint * credit;
             }
-            double gpa = totalCredits / totalCourseScore;
+            double gpa = totalCourseScore / totalCredits;
             if (gpa == NaN) {
                 gpa = 0;
             }
@@ -71,7 +74,8 @@ public class Lab03 {
             System.out.println("Please enter a set of numbers.");
             String[] numbers = input.nextLine().split(" ");
             int sum = 0;
-            for (int i = 0; i < numbers.length; i++) {
+            int i = 0;
+            while(i < numbers.length) {
                 int number =  Integer.parseInt(numbers[i]);
                 if (number % 2 == 0) {
                     System.out.println(number + " is an even number");
@@ -79,6 +83,7 @@ public class Lab03 {
                     System.out.println(number + " is an odd number");
                 }
                 sum += number;
+                i++;
             }
             System.out.println("The sum is " + sum);
             System.out.println("The average is " + ((double) sum / numbers.length));
@@ -91,8 +96,10 @@ public class Lab03 {
             System.out.println("Please enter a numbers.");
             int number = input.nextInt();
             System.out.print(number + "! = ");
-            for (int i = number - 1; i > 0; i--) {
+            int i = number;
+            while (i > 0) {
                 number *= i;
+                i--;
             }
             System.out.print(number);
         }
@@ -107,11 +114,13 @@ public class Lab03 {
             int temp;
             int newNumber = 1;
             System.out.print(oldNumber + ", " + newNumber);
-            for (int i = 0; i < fib - 2; i++) {
+            int i = 0;
+            while (i < fib - 2) {
                 temp = newNumber;
                 newNumber = oldNumber + newNumber;
                 System.out.print(", " + newNumber);
                 oldNumber = temp;
+                i ++;
             }
         }
     };
