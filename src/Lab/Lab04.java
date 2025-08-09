@@ -22,9 +22,9 @@ public class Lab04 {
         int odd = 0;
         int even = 0;
         while (Character.toUpperCase(c) != 'Z') {
-            System.out.print(c + ": ");
+//            System.out.print(c + ": ");
             int num = Character.getNumericValue(c);
-            System.out.print(num + "\n");
+//            System.out.print(num + "\n");
             if (num % 2 == 0) {
                 even += num;
             } else {
@@ -62,18 +62,34 @@ public class Lab04 {
             int pos = input.nextInt();
             switch (pos) {
                 case 1:
+                    if (!stick1) {
+                        System.out.println("That stick is already picked, please try another");
+                        continue;
+                    }
                     stick1 = false;
                     break;
                 case 2:
+                    if (!stick2) {
+                        System.out.println("That stick is already picked, please try another");
+                        continue;
+                    }
                     stick2 = false;
                     break;
                 case 3:
                     stick3 = false;
                     break;
                 case 4:
+                    if (!stick4) {
+                        System.out.println("That stick is already picked, please try another");
+                        continue;
+                    }
                     stick4 = false;
                     break;
                 case 5:
+                    if (!stick5) {
+                        System.out.println("That stick is already picked, please try another");
+                        continue;
+                    }
                     stick5 = false;
                     break;
                 default:
