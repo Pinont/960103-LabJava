@@ -5,7 +5,26 @@ import java.util.Scanner;
 public class Lab5 {
 
     public static void main(String[] args) {
-        q5();
+        Scanner s = new Scanner(System.in);
+        System.out.print("Enter the quiz number : ");
+        int n = s.nextInt();
+        switch (n) {
+            case 1:
+                q1();
+                break;
+            case 2:
+                q2();
+                break;
+            case 3:
+                q3();
+                break;
+            case 4:
+                q4();
+                break;
+            case 5:
+                q5();
+                break;
+        }
     }
 
     private static void q1() {
@@ -33,7 +52,7 @@ public class Lab5 {
             if (number == 0 || number == 1) { // scope for prime number checking
                 continue;
             }
-            if ((number == 2 || number == 3 || number == 5 || number == 7) || (number%2 != 0 && number%3 != 0 && number%5 != 0 && number%7 != 0)) {
+            if ((number == 2 || number == 3 || number == 5 || number == 7) || (number % 2 != 0 && number % 3 != 0 && number % 5 != 0 && number % 7 != 0)) {
                 primeNumber += number + " ";
             }
         }
