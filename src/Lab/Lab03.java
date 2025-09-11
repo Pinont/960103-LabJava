@@ -109,18 +109,58 @@ public class Lab03 {
         @Override
         public void statement(Scanner input) {
             System.out.print("Please enter an index of Fibonacci number: ");
-            int fib = input.nextInt();
-            int oldNumber = 0;
-            int temp;
-            int newNumber = 1;
-            System.out.print(oldNumber + ", " + newNumber);
-            int i = 0;
-            while (i < fib - 2) {
-                temp = newNumber;
-                newNumber = oldNumber + newNumber;
-                System.out.print(", " + newNumber);
-                oldNumber = temp;
-                i ++;
+            long fib = input.nextLong();
+
+            if (fib <= 0) {
+                System.out.println("Invalid input. Please enter a positive number.");
+                return;
+            }
+
+            System.out.print("Fibonacci sequence: ");
+            if (fib == 1) {
+                System.out.println("0");
+                return;
+            } else if (fib == 2) {
+                System.out.println("0, 1");
+                return;
+            }
+
+            long[] sequence = new long[(int) fib];
+            sequence[0] = 0;
+            sequence[1] = 1;
+
+            int numThreads = 4; // Number of threads
+            Thread[] threads = new Thread[numThreads];
+            int chunkSize = (int) (fib - 2) / numThreads;
+
+            for (int t = 0; t < numThreads; t++) {
+                final int start = t * chunkSize + 2;
+                final int end = (t == numThreads - 1) ? (int) fib : start + chunkSize;
+
+                threads[t] = new Thread(() -> {
+                    for (int i = start; i < end; i++) {
+                        sequence[i] = sequence[i - 1] + sequence[i - 2];
+                    }
+                });
+
+                threads[t].start();
+            }
+
+            // Wait for all threads to finish
+            for (Thread thread : threads) {
+                try {
+                    thread.join();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            // Print the sequence
+            for (int i = 0; i < fib; i++) {
+                System.out.print(sequence[i]);
+                if (i < fib - 1) {
+                    System.out.print(", ");
+                }
             }
         }
     };

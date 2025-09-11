@@ -2,7 +2,7 @@ package Lab;
 
 import java.util.Scanner;
 
-public class Lab5 {
+public class Lab05 {
 
     public static void main(String[] args) {
         Scanner s = new Scanner(System.in);
@@ -49,10 +49,13 @@ public class Lab5 {
             if (number % 2 == 0) {
                 evenNumber += number + " ";
             }
-            if (number == 0 || number == 1) { // scope for prime number checking
-                continue;
+            boolean isPrime = true;
+            for (int p = 2; p < number; p++) {
+                if (number % p == 0) {
+                    isPrime = false;
+                }
             }
-            if ((number == 2 || number == 3 || number == 5 || number == 7) || (number % 2 != 0 && number % 3 != 0 && number % 5 != 0 && number % 7 != 0)) {
+            if (isPrime) {
                 primeNumber += number + " ";
             }
         }
