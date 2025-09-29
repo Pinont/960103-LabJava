@@ -54,7 +54,7 @@ public class Lab04 {
             System.out.println("Stick on the table");
             System.out.println(stick1? "1: " + stick : "1:");
             System.out.println(stick2? "2: " + stick : "2:");
-            System.out.println("3: " + stick); // simplified true -> Jetbrains Suggest
+            System.out.println("3: " + stick);
             System.out.println(stick4? "4: " + stick : "4:");
             System.out.println(stick5? "5: " + stick : "5:");
             System.out.println("The " + (player? p2 : p1) + " player turn");
